@@ -34,6 +34,8 @@ footer p{
     text-align: center;
 
 }
+
+/* ------------Styling för firstpage och hemsida----------*/
 .welcome-container{
     display: flex;
 }
@@ -56,4 +58,20 @@ footer p{
     height: 30%;
     margin-top: 10%;
     margin-left: 3rem;
+}
+
+/* -------------------Anställda styling--------------*/
+.employee-article {
+    text-align: center;
+}
+.employee-div{
+    align-items: center;
+    margin-left: 20%;
+}
+table{
+    border-collapse: collapse;
+}
+th,td {
+    border: 1px solid black;
+    padding: 5px;
 }

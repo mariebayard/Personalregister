@@ -28,7 +28,8 @@ def hem():
 
 @app.route("/anstallda")
 def anstallda():
-    return render_template('anstallda.html')
+    employees=db.session.query(Employee).all()
+    return render_template('anstallda.html', employees=employees)
 
 @app.route("/personkort")
 def personkort():

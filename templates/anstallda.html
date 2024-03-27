@@ -3,8 +3,32 @@
 {% block title %}Anstallda{% endblock %}
 
 {% block content %}
-
-<h1>Anställda</h1>
-<p>Nedan listas alla anställda.</p>
-<p>Här ska även finnas en sökfunktion</p>
+<article class="employee-article">
+    <h1>Anställda</h1>
+    <p>Här ska även finnas en sökfunktion</p>
+    <div class="employee-div">   
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Phone</th>
+                    <th>Country</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.id }}</td>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.age }}</td>
+                    <td>{{ employee.phone }}</td>
+                    <td>{{ employee.country }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</article>
 {% endblock%}
