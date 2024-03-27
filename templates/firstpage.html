@@ -1,1 +1,25 @@
-<h1>Här kan du logga in</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>Vårt företag</title>
+</head>
+<body>
+    <nav>
+        <a href="{{url_for('login')}}">Logga in</a>
+    </nav>
+    <div class="welcome-container">
+        <div class="welcome-div">
+            <p class="welcome-p">Välkommen till</p>
+            <h1 class="welcome-h1">Vårt Företag</h1>
+            <p class="welcome-p">Företaget där alla vill jobba</p>
+        </div>
+        <div class="welcome-img">
+            <img src="/static/welcome_photo.jpeg" alt="bild på arbete">
+        </div>
+    </div>
+</body>
+</html>
+

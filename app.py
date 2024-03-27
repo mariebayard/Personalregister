@@ -18,6 +18,10 @@ migrate = Migrate(app, db)
 def firstpage ():
     return render_template('firstpage.html')
 
+@app.route("/login")
+def login():
+    return render_template('login.html')
+
 @app.route("/hem")
 def hem():
     return render_template('index.html')
