@@ -103,3 +103,10 @@ ul li {
 ul li span {
     font-weight: 600;
 }
+
+.person-form-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}

@@ -31,12 +31,27 @@ def anstallda():
     employees=db.session.query(Employee, EmployeePicture).join(EmployeePicture).filter(EmployeePicture.picture_size=='medium').all()
     return render_template('anstallda.html', employees=employees)
 
+@app.route("/personkort/search", methods=['POST'])
+def search_person():
+   query=request.form['query']
+   person= db.session.query(Employee).filter_by(id=query).first()
+   if person:
+       picture=db.session.query(EmployeePicture).filter_by(employee_id=person.id, picture_size='large').first()
+       return render_template('personkort.html', person=person, picture=picture)
+   else:
+       return render_template('personkort.html')
+
 @app.route("/personkort/<person_id>")
 def personkort(person_id):
     print('PersonID:',person_id)
     person=db.session.query(Employee).filter(Employee.id==person_id).first()
     picture=db.session.query(EmployeePicture).filter_by(employee_id=person_id, picture_size='large').first()
     return render_template('personkort.html',person=person, picture=picture)
+
+@app.route("/personkort")
+def person_search():
+    return render_template('personkort.html')
+
 
 @app.route("/kontakt")
 def kontakt():

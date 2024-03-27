@@ -6,6 +6,14 @@
 <article class="person-article">
     <h1>Personkort</h1>
     <p>Här är mer information om valda person</p>
+    <div class="person-form-div">
+        <form action="{{ url_for('search_person')}}" method="POST">
+            <label for="search">Sök efter person på ID:</label>
+            <input type="text" id="search" name="query">
+            <button type="submit">Sök</button>
+        </form>
+    </div>
+    {% if person %}
     <div class="person-div">
         <img class="person-img" src="{{ picture.picture }}" alt="Bild av anställd">
         <ul>
@@ -19,7 +27,9 @@
                 {{ person.postcode}}, {{ person.city}}, {{ person.state}},
                  {{ person.country}} </li>
         </ul>
-        
     </div>
+    {% else %}
+    <p>Det finns ingen person med sökt ID</p>
+    {% endif %}
 </article>
 {% endblock%}
