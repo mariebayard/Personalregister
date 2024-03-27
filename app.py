@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request
 from flask_migrate import Migrate, upgrade
-from models import db, seed_data, Employee
+from models import db, seed_data, Employee, EmployeePicture
 from dotenv import load_dotenv
 import os
 
@@ -28,7 +28,7 @@ def hem():
 
 @app.route("/anstallda")
 def anstallda():
-    employees=db.session.query(Employee).all()
+    employees=db.session.query(Employee, EmployeePicture).join(EmployeePicture).filter(EmployeePicture.picture_size=='medium').all()
     return render_template('anstallda.html', employees=employees)
 
 @app.route("/personkort")

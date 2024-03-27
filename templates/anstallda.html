@@ -11,20 +11,22 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Phone</th>
-                    <th>Country</th>
+                    <th>Namn</th>
+                    <th>Ålder</th>
+                    <th>Telefon</th>
+                    <th>Land</th>
+                    <th>Bild</th>
                 </tr>
             </thead>
             <tbody>
-                {% for employee in employees %}
+                {% for employee,picture in employees %}
                 <tr>
                     <td>{{ employee.id }}</td>
                     <td>{{ employee.name }}</td>
                     <td>{{ employee.age }}</td>
                     <td>{{ employee.phone }}</td>
                     <td>{{ employee.country }}</td>
+                    <td><img src="{{ picture.picture }}" alt="Bild anställd"></td>
                 </tr>
                 {% endfor %}
             </tbody>
