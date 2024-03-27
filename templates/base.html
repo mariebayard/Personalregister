@@ -4,12 +4,23 @@
     {% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
     <title>{% block title %}{% endblock %}</title>
     {% endblock %}
 </head>
 <body>
+    
+    <nav class="topnav">
+        <a href="{{url_for('hem')}}">Hem</a>
+        <a href="{{url_for('anstallda')}}">Anställda</a>
+        <a href="{{url_for('personkort')}}">Personkort</a>
+        <a href="{{url_for('kontakt')}}">Kontakt</a>
+        <a href="{{url_for('logga_ut')}}">Logga ut</a>
+    </nav>
     {% block content%}
-
     {% endblock%}
+    <footer>
+        <p>Här är en footer</p>
+    </footer>
 </body>
 </html>

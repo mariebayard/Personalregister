@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Hem{% endblock %}
 
 {% block content %}
-<h1>{{text}}</h1>
+<div class="welcome-container">
+    <div class="welcome-div">
+        <p class="welcome-p">Välkommen till</p>
+        <h1 class="welcome-h1">Vårt Företag</h1>
+        <p class="welcome-p">Företaget där alla vill jobba</p>
+    </div>
+    <div class="welcome-img">
+        <img src="/static/welcome_photo.jpeg" alt="bild på arbete">
+    </div>
+</div>
 {% endblock%}

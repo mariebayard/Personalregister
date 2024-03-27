@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+nav {
+    background-color: rgb(80, 80, 239);
+    padding: 20px;
+    text-align: center;
+}
+nav a{
+    text-decoration: none;
+    margin-right: 30px;
+    margin-left: 30px;
+    color: white;
+    font-size: 1.3rem;
+}
+body{
+    font-family: sans-serif;
+}
+h1{
+    margin-top: 1.5rem;
+    font-size: 2rem;
+}
+p{
+    margin-top: 0.8rem;
+}
+footer{
+    position: absolute;
+    bottom: 10px;
+    height: 10vh;
+    width: 100%;
+}
+footer p{
+    text-align: center;
+
+}
+.welcome-container{
+    display: flex;
+}
+.welcome-div {
+    text-align: left;
+    margin-top: 15%;
+    margin-left: 10%;
+    display: inline-block;
+}
+.welcome-p {
+    font-size: 2rem;
+}
+.welcome-h1 {
+    font-size: 3.5rem;
+    margin-top: 0.8rem;
+}
+.welcome-img {
+    display: inline-block;
+    width: 30%;
+    height: 30%;
+    margin-top: 10%;
+    margin-left: 3rem;
+}

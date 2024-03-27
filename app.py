@@ -15,9 +15,28 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 @app.route("/")
-def home_page():
-    text = "Hello world"
-    return render_template('index.html', text=text)
+def firstpage ():
+    return render_template('firstpage.html')
+
+@app.route("/hem")
+def hem():
+    return render_template('index.html')
+
+@app.route("/anstallda")
+def anstallda():
+    return render_template('anstallda.html')
+
+@app.route("/personkort")
+def personkort():
+    return render_template('personkort.html')
+
+@app.route("/kontakt")
+def kontakt():
+    return render_template('kontakt.html')
+
+@app.route("/logga_ut")
+def logga_ut():
+    return render_template('logga_ut.html')
 
 if __name__ == '__main__':
     with app.app_context():
