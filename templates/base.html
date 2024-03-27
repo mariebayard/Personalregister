@@ -13,7 +13,7 @@
     <nav class="topnav">
         <a href="{{url_for('hem')}}">Hem</a>
         <a href="{{url_for('anstallda')}}">Anställda</a>
-        <a href="{{url_for('personkort')}}">Personkort</a>
+        <a href="{{url_for('personkort', person_id=person_id)}}">Personkort</a>
         <a href="{{url_for('kontakt')}}">Kontakt</a>
         <a href="{{url_for('logga_ut')}}">Logga ut</a>
     </nav>

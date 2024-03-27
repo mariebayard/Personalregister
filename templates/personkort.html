@@ -3,7 +3,21 @@
 {% block title %}personkort{% endblock %}
 
 {% block content %}
-
-<h1>Personkort</h1>
-<p>Här kommer mer info om varje person</p>
+<article class="person-article">
+    <h1>Personkort</h1>
+    <p>Här är mer information om valda person</p>
+    <div>
+        <ul>
+            <li>ID: {{ person.id }}</li>
+            <li>Namn: {{ person.name }}</li>
+            <li>Ålder: {{ person.age }}</li>
+            <li>Telefon: {{ person.phone }}</li>
+            <li>Land: {{ person.country }}</li>
+            <li>Email: {{ person.email }}</li>
+            <li>Adress: {{ person.street_name}}, {{ person.street_number }}, 
+                {{ person.postcode}}, {{ person.city}}, {{ person.state}},
+                 {{ person.country}} </li>
+        </ul>
+    </div>
+</article>
 {% endblock%}

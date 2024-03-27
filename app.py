@@ -31,9 +31,11 @@ def anstallda():
     employees=db.session.query(Employee, EmployeePicture).join(EmployeePicture).filter(EmployeePicture.picture_size=='medium').all()
     return render_template('anstallda.html', employees=employees)
 
-@app.route("/personkort")
-def personkort():
-    return render_template('personkort.html')
+@app.route("/personkort/<person_id>")
+def personkort(person_id):
+    print('PersonID:',person_id)
+    person=db.session.query(Employee).filter(Employee.id==person_id).first()
+    return render_template('personkort.html',person=person)
 
 @app.route("/kontakt")
 def kontakt():

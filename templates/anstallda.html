@@ -26,7 +26,7 @@
                     <td>{{ employee.age }}</td>
                     <td>{{ employee.phone }}</td>
                     <td>{{ employee.country }}</td>
-                    <td><img src="{{ picture.picture }}" alt="Bild anställd"></td>
+                    <td><a href="{{ url_for('personkort', person_id=employee.id) }}"><img src="{{ picture.picture }}" alt="Bild anställd"></a></td>
                 </tr>
                 {% endfor %}
             </tbody>
