@@ -5,16 +5,57 @@
 {% block content %}
 <article class="employee-article">
     <h1>Anställda</h1>
-    <p>Här ska även finnas en sökfunktion</p>
-    <div class="employee-div">   
+     
+        <form method="get">
+            <div class="employee-search">
+                <input type="text" name="q" placeholder="Search..." required value="{{q}}">
+                <button class="employee-button" type="submit">Sök</button>
+            </div>
+        </form>
+<div class="employee-div"> 
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Namn</th>
-                    <th>Ålder</th>
-                    <th>Telefon</th>
-                    <th>Land</th>
+                    <th>ID 
+                        <a href="{{url_for('anstallda', sort_order='asc', sort_column='id', q=q, page=page)}}">
+                            <i class="bx bxs-up-arrow"></i>
+                        </a>
+                        <a href="{{url_for('anstallda', sort_order='desc', sort_column='id',q=q, page=page)}}">
+                            <i class="bx bxs-down-arrow"></i>
+                        </a>
+                    </th>
+                    <th>Namn
+                        <a href="{{url_for('anstallda', sort_order='asc', sort_column='name', q=q, page=page)}}">
+                            <i class="bx bxs-up-arrow"></i>
+                        </a>
+                        <a href="{{url_for('anstallda', sort_order='desc', sort_column='name',q=q, page=page)}}">
+                            <i class="bx bxs-down-arrow"></i>
+                        </a>
+                    </th>
+                    <th>Ålder
+                        <a href="{{url_for('anstallda', sort_order='asc', sort_column='age', q=q, page=page)}}">
+                            <i class="bx bxs-up-arrow"></i>
+                        </a>
+                        <a href="{{url_for('anstallda', sort_order='desc', sort_column='age',q=q, page=page)}}">
+                            <i class="bx bxs-down-arrow"></i>
+                        </a>
+                    </th>
+                    <th>Telefon
+                        <a href="{{url_for('anstallda', sort_order='asc', sort_column='phone', q=q, page=page)}}">
+                            <i class="bx bxs-up-arrow"></i>
+                        </a>
+                        <a href="{{url_for('anstallda', sort_order='desc', sort_column='phone',q=q, page=page)}}">
+                            <i class="bx bxs-down-arrow"></i>
+                        </a>
+                    </th>
+                    <th>Land
+                        <a href="{{url_for('anstallda', sort_order='asc', sort_column='country', q=q, page=page)}}">
+                            <i class="bx bxs-up-arrow"></i>
+                        </a>
+                        <a href="{{url_for('anstallda', sort_order='desc', sort_column='country',q=q, page=page)}}">
+                            <i class="bx bxs-down-arrow"></i>
+                        </a>
+                    </th>
                     <th>Bild</th>
                 </tr>
             </thead>
@@ -32,5 +73,49 @@
             </tbody>
         </table>
     </div> 
+        <nav class="nav-pagination">
+            <ul class="pagination">
+                {% if nr_pages !=1 %}
+                    {% if has_prev %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('anstallda', sort_column=sort_column, sort_order=sort_order, q=q, page=page-1)}}">
+                            <i class="bx bx-chevrons-left"></i>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link"><i class="bx bx-chevrons-left"></i></box-icon></a>
+                    </li>
+                    {% endif %}
+
+                    {% for page in pagination.iter_pages(left_edge=0, right_edge=0, left_current=2, right_current=2) %}
+                        {% if page %}
+                            {% if page != pagination.page %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ url_for('anstallda', sort_column=sort_column, sort_order=sort_order, q=q, page=page)}}">{{ page }}</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item active">
+                                <a class="page-link"><span>{{ page }}</span></a>
+                            </li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ url_for('anstallda', sort_column=sort_column, sort_order=sort_order, q=q, page=page+1)}}">
+                                <i class="bx bx-chevrons-right"></i>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link"><i class="bx bx-chevrons-right"></i></a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+            <p>Sida {{page}} av {{pages}}</p>
+        </nav>
+
 </article>
 {% endblock%}

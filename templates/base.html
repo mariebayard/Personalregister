@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>{% block title %}{% endblock %}</title>
     {% endblock %}
 </head>
@@ -13,7 +14,7 @@
     <nav class="topnav">
         <a href="{{url_for('hem')}}">Hem</a>
         <a href="{{url_for('anstallda')}}">Anställda</a>
-        <a href="{{url_for('personkort', person_id=person_id)}}">Personkort</a>
+        <a href="{{url_for('personkort_search')}}">Personkort</a>
         <a href="{{url_for('kontakt')}}">Kontakt</a>
         <a href="{{url_for('logga_ut')}}">Logga ut</a>
     </nav>

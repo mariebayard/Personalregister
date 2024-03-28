@@ -24,12 +24,50 @@ def login():
 
 @app.route("/hem")
 def hem():
-    return render_template('index.html')
+    return render_template('hem.html')
 
 @app.route("/anstallda")
 def anstallda():
-    employees=db.session.query(Employee, EmployeePicture).join(EmployeePicture).filter(EmployeePicture.picture_size=='medium').all()
-    return render_template('anstallda.html', employees=employees)
+    q=request.args.get('q','')
+    sort_column=request.args.get('sort_column','id')
+    sort_order=request.args.get('sort_order','asc')
+    page=request.args.get('page', 1, type=int)
+    employees=db.session.query(Employee, EmployeePicture).join(EmployeePicture).filter(EmployeePicture.picture_size=='thumbnail')
+    employees=employees.filter(
+        Employee.name.like('%'+ q+ '%')|
+        Employee.age.like('%'+ q+ '%')|
+        Employee.phone.like('%'+ q+ '%')|
+        Employee.country.like('%'+ q+ '%')
+    )
+    if sort_column == 'name':
+        sort_by=Employee.name
+    elif sort_column == 'age':
+        sort_by=Employee.age
+    elif sort_column == 'phone':
+        sort_by = Employee.phone
+    elif sort_column == 'email':
+        sort_by = Employee.email
+    else:
+        sort_by=Employee.id
+
+    if sort_order == 'asc':
+        sort_by=sort_by.asc()
+    elif sort_order == 'desc':
+        sort_by = sort_by.desc()
+    
+    employees=employees.order_by(sort_by)
+
+    pa_obj=employees.paginate(page=page, per_page=30, error_out=True)
+    return render_template('anstallda.html', 
+                           employees=pa_obj.items,
+                           q=q,
+                           sort_order=sort_order,
+                           sort_column=sort_column,
+                           pagination=pa_obj,
+                           page=page,
+                           nr_pages=pa_obj.pages,
+                           has_next=pa_obj.has_next,
+                           has_prev=pa_obj.has_prev)
 
 @app.route("/personkort/search", methods=['POST'])
 def search_person():
@@ -49,7 +87,7 @@ def personkort(person_id):
     return render_template('personkort.html',person=person, picture=picture)
 
 @app.route("/personkort")
-def person_search():
+def personkort_search():
     return render_template('personkort.html')
 
 
