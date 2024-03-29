@@ -167,3 +167,20 @@ ul li span {
     align-items: center;
     margin-top: 2rem;
 }
+.person-form-div label {
+    font-size: 1rem;
+}
+.person-form-div input {
+    font-size: 1rem;
+    padding: 0.4rem;
+    border: 2px solid black;
+    border-radius: 6px;
+}
+.person-form-div button{
+    padding: 0.4rem 0.8rem;
+    background-color: rgb(80, 80, 239);
+    color: white;
+    font-size: 1rem;
+    border: 2px solid black;
+    border-radius: 6px;
+}
