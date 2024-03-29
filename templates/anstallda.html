@@ -8,7 +8,7 @@
      
         <form method="get">
             <div class="employee-search">
-                <input type="text" name="q" placeholder="Search..." required value="{{q}}">
+                <input type="text" name="q" placeholder="Sök efter anställda..." required value="{{q}}">
                 <button class="employee-button" type="submit">Sök</button>
             </div>
         </form>
@@ -114,7 +114,7 @@
                     {% endif %}
                 {% endif %}
             </ul>
-            <p>Sida {{page}} av {{pages}}</p>
+            <p class="page-of">Sida {{page}} av {{nr_pages}}</p>
         </nav>
 
 </article>
