@@ -5,7 +5,7 @@
 {% block content %}
 <article class="person-article">
     <h1>Personkort</h1>
-    <p>Här är mer information om anställd med ID {{person.id}}</p>
+    
     <div class="person-form-div">
         <form action="{{ url_for('search_person')}}" method="POST">
             <label for="search">Sök efter person på ID:</label>
@@ -14,6 +14,7 @@
         </form>
     </div>
     {% if person %}
+    <p>Här är mer information om anställd med ID {{person.id}}</p>
     <div class="person-div">
         <img class="person-img" src="{{ picture.picture }}" alt="Bild av anställd">
         <ul>
