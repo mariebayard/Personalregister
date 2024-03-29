@@ -34,6 +34,7 @@ def anstallda():
     page=request.args.get('page', 1, type=int)
     employees=db.session.query(Employee, EmployeePicture).join(EmployeePicture).filter(EmployeePicture.picture_size=='thumbnail')
     employees=employees.filter(
+        Employee.id.like('%'+ q+ '%')|
         Employee.name.like('%'+ q+ '%')|
         Employee.age.like('%'+ q+ '%')|
         Employee.phone.like('%'+ q+ '%')|
@@ -71,25 +72,20 @@ def anstallda():
 
 @app.route("/personkort/search", methods=['POST'])
 def search_person():
-   query=request.form['query']
+   query=request.form.get('query', type=int)
    person= db.session.query(Employee).filter_by(id=query).first()
    if person:
        picture=db.session.query(EmployeePicture).filter_by(employee_id=person.id, picture_size='large').first()
        return render_template('personkort.html', person=person, picture=picture)
    else:
-       return render_template('personkort.html')
+       message='Det finns ingen anställd med sökt ID'
+       return render_template('personkort.html', message=message)
 
 @app.route("/personkort/<person_id>")
 def personkort(person_id):
-    print('PersonID:',person_id)
     person=db.session.query(Employee).filter(Employee.id==person_id).first()
     picture=db.session.query(EmployeePicture).filter_by(employee_id=person_id, picture_size='large').first()
     return render_template('personkort.html',person=person, picture=picture)
-
-@app.route("/personkort")
-def personkort_search():
-    return render_template('personkort.html')
-
 
 @app.route("/kontakt")
 def kontakt():
