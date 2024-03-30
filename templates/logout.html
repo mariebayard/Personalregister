@@ -1,13 +1,21 @@
-{% extends "base.html" %}
-
-{% block title %}Logga ut{% endblock %}
-
-{% block content %}
-<article class="logout-article">
-    <h1>Du är utloggad</h1>
-    <div class="logout-div">
-        <p>Vill du logga in igen?</p>
-        <a class="login-btn" href="{{ url_for('login')}}">Logga in</a>
-    </div>
-</article>
-{% endblock%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>Logga in</title>
+</head>
+<body>
+    <article class="logout-article">
+        <h1>Du är utloggad</h1>
+        <div class="logout-div">
+            <p>Vill du logga in igen?</p>
+            <a class="login-btn" href="{{ url_for('login')}}">Logga in</a>
+        </div>
+    </article>
+    <footer>
+        <p>Här är en footer</p>
+    </footer>
+</body>
+</html>
