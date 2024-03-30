@@ -136,6 +136,9 @@ th,td {
 .page-link:hover {
     background-color: rgba(80, 80, 239, 0.3);
 }
+.active-page{
+    font-size: 1.6rem;
+}
 .page-of {
     font-size: 1rem;
 }
