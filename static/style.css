@@ -27,6 +27,19 @@ p{
     font-size: 1.5rem;
     text-align: center;
 }
+.btn{
+    padding: 0.4rem 0.8rem;
+    background-color: rgb(80, 80, 239);
+    color: white;
+    font-size: 1rem;
+    border: 2px solid black;
+    border-radius: 6px;
+    transition: background-color 0.5s;
+}
+.btn:hover{
+    background-color: rgba(80, 80, 239, 0.3);
+}
+
 footer{
     background-color: rgba(80, 80, 239,0.3);
     bottom: 0px;
@@ -38,7 +51,6 @@ footer p{
     font-size: 1rem;
     padding-top: 0.7rem;
     margin: 0;
-
 }
 
 /* ------------Styling för firstpage och hemsida----------*/
@@ -93,18 +105,6 @@ footer p{
     border: 2px solid black;
     border-radius: 6px;
 }
-.employee-button{
-    padding: 0.4rem 0.8rem;
-    background-color: rgb(80, 80, 239);
-    color: white;
-    font-size: 1rem;
-    border: 2px solid black;
-    border-radius: 6px;
-    transition: background-color 0.5s;
-}
-.employee-button:hover{
-    background-color: rgba(80, 80, 239, 0.3);
-}
 table{
     border-collapse: collapse;
 }
@@ -116,14 +116,12 @@ th,td {
     margin:10px 0 30px 0;
     background-color: white;
 }
-
 .pagination {
     display: flex;
     justify-content: center;
     padding: 0.8rem;
     margin: 0;
 }
-
 .page-link {
     padding: 0.4rem 0.8rem;
     margin: 0 5px;
@@ -135,7 +133,6 @@ th,td {
     border-radius: 6px;
     transition: background-color 0.5s;
 }
-
 .page-link:hover {
     background-color: rgba(80, 80, 239, 0.3);
 }
@@ -146,7 +143,6 @@ a{
     text-decoration:none;
     color: rgb(80, 80, 239);
 }
-
 
 /* -------------------Personkort styling--------------*/
 .person-article{
@@ -174,7 +170,6 @@ ul li {
 ul li span {
     font-weight: 600;
 }
-
 .person-form-div {
     display: flex;
     justify-content: center;
@@ -190,18 +185,6 @@ ul li span {
     border: 2px solid black;
     border-radius: 6px;
 }
-.person-form-div button{
-    padding: 0.4rem 0.8rem;
-    background-color: rgb(80, 80, 239);
-    color: white;
-    font-size: 1rem;
-    border: 2px solid black;
-    border-radius: 6px;
-    transition: background-color 0.5s;
-}
-.person-form-div button:hover{
-    background-color: rgba(80, 80, 239, 0.3);
-}
 .person-p {
     margin-top: 3rem;
 }
@@ -213,18 +196,8 @@ ul li span {
     align-items: center;
     text-align: center;
 }
-.login-btn {
-    padding: 0.4rem 0.8rem;
-    background-color: rgb(80, 80, 239);
-    color: white;
-    font-size: 1rem;
-    border: 2px solid black;
-    border-radius: 6px;
+.logout-div a{
     margin-top: 1rem;
-    transition: background-color 0.5s;
-}
-.login-btn:hover{
-    background-color: rgba(80, 80, 239, 0.3);
 }
 .logout-article {
     height: 89vh;
