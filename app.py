@@ -93,7 +93,7 @@ def kontakt():
 
 @app.route("/logga_ut")
 def logga_ut():
-    return render_template('logga_ut.html')
+    return render_template('logout.html')
 
 if __name__ == '__main__':
     with app.app_context():
