@@ -78,8 +78,8 @@ def search_person():
        picture=db.session.query(EmployeePicture).filter_by(employee_id=person.id, picture_size='large').first()
        return render_template('personkort.html', person=person, picture=picture)
    else:
-       message='Det finns ingen anställd med sökt ID'
-       return render_template('personkort.html', message=message)
+       message='Det finns ingen anställd med ID: '
+       return render_template('personkort.html', message=message, query=query)
 
 @app.route("/personkort/<person_id>")
 def personkort(person_id):
