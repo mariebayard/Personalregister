@@ -37,13 +37,14 @@ footer p{
     text-align: center;
     font-size: 1rem;
     padding-top: 1rem;
+    margin: 0;
 
 }
 
 /* ------------Styling för firstpage och hemsida----------*/
 .welcome-container{
     display: flex;
-    height: 81vh;
+    height: 83vh;
     text-align: center;
 }
 .welcome-div {
@@ -145,7 +146,7 @@ a{
 
 /* -------------------Personkort styling--------------*/
 .person-article{
-    height: 81vh;
+    height: 83vh;
 }
 .person-div{
     padding-top: 3rem;
@@ -214,5 +215,37 @@ ul li span {
     margin-top: 1rem;
 }
 .logout-article {
-    height: 81vh;
+    height: 83vh;
+}
+
+/* -------------------Login styling--------------*/
+.login-article{
+    height: 92vh;
+}
+.login-div {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+.login-div form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login-div label {
+    margin-bottom: 0.8rem;
+    padding-right: 1rem;
+}
+.login-div input {
+    padding: 0.4rem;
+    margin-bottom: 20px;
+    width: 250px;
+    border: 1px solid black;
+    border-radius: 6px;
+}
+.email-div label{
+    padding-right: 2.6rem;
 }

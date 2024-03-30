@@ -1,1 +1,30 @@
-<h1>Här kan du logga in</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>Logga in</title>
+</head>
+<body>
+    <article class="login-article">
+        <h1>Logga in</h1>
+        <div class="login-div">
+            <form action="">
+                <div class="email-div">
+                    <label for="email">Email:</label>
+                    <input type="email" placeholder="Din emailadress">
+                </div>
+                <div>
+                    <label for="password">Lösenord:</label>
+                    <input type="password" placeholder="Ditt lösenord">
+                </div>
+                <a class="login-btn" href="{{url_for('hem')}}">Logga in</a>
+            </form>
+        </div>
+    </article>
+    <footer>
+        <p>Här är en footer</p>
+    </footer>
+</body>
+</html>
