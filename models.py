@@ -1,6 +1,8 @@
 import requests
 import json
 from flask_sqlalchemy import SQLAlchemy
+from flask_security import RoleMixin, UserMixin, SQLAlchemyUserDatastore, hash_password
+import datetime
 
 NR_OF_PERSON_TO_SEED = 500
 SEED = 'abc'
@@ -28,8 +30,36 @@ class EmployeePicture(db.Model):
     employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'), nullable=False)
     employee = db.relationship('Employee', back_populates='pictures', lazy=True)
 
+roles_users=db.Table('role_users',
+    db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
+    db.Column('role_id', db.Integer(), db.ForeignKey('role.id'))
+)
+
+class Role(db.Model,RoleMixin):
+    id=db.Column(db.Integer(), primary_key=True)
+    name=db.Column(db.String(80), unique=True)
+
+class User(db.Model, UserMixin):
+    id=db.Column(db.Integer, primary_key=True)
+    email=db.Column(db.String(100), unique=True)
+    password=db.Column(db.String(100))
+    active= db.Column(db.Boolean())
+    fs_uniquifier=db.Column(db.String(255), unique=True, nullable=False)
+    roles=db.relationship('Role', secondary=roles_users, backref=db.backref('user', lazy='dynamic'))
+
+user_datastore=SQLAlchemyUserDatastore(db, User, Role)
 
 def seed_data(db):
+    if not Role.query.first():
+        user_datastore.create_role(name='Admin')
+        user_datastore.create_role(name='User')
+        db.session.commit()
+
+    if not User.query.first():
+        user_datastore.create_user(email='admin_user@test.com', password=hash_password('adminuserpassword'), roles=['Admin', 'User'])
+        user_datastore.create_user(email='user@test.com', password=hash_password('userpassword'), roles=['User'])
+        user_datastore.create_user(email='admin@test.com', password=hash_password('adminpassword'), roles=['Admin'])
+        db.session.commit()
 
 
     if not Employee.query.count():

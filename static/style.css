@@ -246,8 +246,13 @@ ul li span {
     border-radius: 6px;
     background-color: var(--search-color);
 }
-.email-div label{
-    padding-right: 2.6rem;
+.password-div{
+    padding-right: 1.5rem;
+}
+.login-btn{
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    margin-left: 1.8rem;
 }
 
 /* -------------------Kontakt styling--------------*/

@@ -1,6 +1,7 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_migrate import Migrate, upgrade
-from models import db, seed_data, Employee, EmployeePicture
+from flask_security import Security, login_required, roles_required
+from models import db, seed_data, Employee, EmployeePicture, user_datastore
 from dotenv import load_dotenv
 import os
 
@@ -9,10 +10,15 @@ load_dotenv()
 app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('LOCAL_DATABASE_URI')
+app.config["SECRET_KEY"]=os.getenv('SECRET_KEY')
+app.config["SECURITY_PASSWORD_SALT"]=os.getenv('SECURITY_PASSWORD_SALT')
+app.config["SECURITY_POST_LOGIN_VIEW"]='/hem'
+app.config['SECURITY_LOGIN_USER_TEMPLATE']='login.html'
 
 db.init_app(app)
 
 migrate = Migrate(app, db)
+security=Security(app, user_datastore)
 
 @app.route("/")
 def firstpage ():
@@ -23,6 +29,7 @@ def login():
     return render_template('login.html')
 
 @app.route("/hem")
+@login_required
 def hem():
     return render_template('hem.html')
 

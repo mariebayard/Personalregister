@@ -1,3 +1,5 @@
+{% from "_macros.html" import render_field_with_errors, render_field, render_field_errors, render_form_errors, prop_next %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,16 +12,18 @@
     <article class="login-article">
         <h1>Logga in</h1>
         <div class="login-div">
-            <form action="">
-                <div class="email-div">
-                    <label for="email">Email:</label>
-                    <input type="email" placeholder="Din emailadress">
+            <form action="{{ url_for_security('login') }}{{ prop_next() }}" method="post" name="login_user_form">
+                <div>
+                    {{ login_user_form.hidden_tag() }}
+                    {{ render_form_errors(login_user_form) }}
+                    {% if "email" in identity_attributes %}{{ render_field_with_errors(login_user_form.email, placeholder='Din email', min_div='email-div', label='Epost') }}{% endif %}
                 </div>
                 <div>
-                    <label for="password">Lösenord:</label>
-                    <input type="password" placeholder="Ditt lösenord">
+                    {{ render_field_with_errors(login_user_form.password, min_div='password-div', placeholder='Ditt lösenord', label='Lösenord') }}
+                    {{ render_field_errors(login_user_form.csrf_token) }}
+                       
                 </div>
-                <a class="btn login-btn" href="{{url_for('hem')}}">Logga in</a>
+                {{ render_field(login_user_form.submit, class='btn login-btn', value='Logga in') }}
             </form>
         </div>
     </article>
