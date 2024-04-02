@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_migrate import Migrate, upgrade
-from flask_security import Security, login_required, roles_required
+from flask_security import Security, login_required, roles_required, logout_user
 from models import db, seed_data, Employee, EmployeePicture, user_datastore
 from dotenv import load_dotenv
 import os
@@ -14,6 +14,7 @@ app.config["SECRET_KEY"]=os.getenv('SECRET_KEY')
 app.config["SECURITY_PASSWORD_SALT"]=os.getenv('SECURITY_PASSWORD_SALT')
 app.config["SECURITY_POST_LOGIN_VIEW"]='/hem'
 app.config['SECURITY_LOGIN_USER_TEMPLATE']='login.html'
+app.config["SECURITY_POST_LOGOUT_VIEW"]='/logout_2'
 
 db.init_app(app)
 
@@ -34,6 +35,7 @@ def hem():
     return render_template('hem.html')
 
 @app.route("/anstallda")
+@login_required
 def anstallda():
     q=request.args.get('q','')
     sort_column=request.args.get('sort_column','id')
@@ -78,6 +80,7 @@ def anstallda():
                            has_prev=pa_obj.has_prev)
 
 @app.route("/personkort/search", methods=['POST'])
+@login_required
 def search_person():
    query=request.form.get('query', type=int)
    person= db.session.query(Employee).filter_by(id=query).first()
@@ -89,18 +92,22 @@ def search_person():
        return render_template('personkort.html', message=message, query=query)
 
 @app.route("/personkort/<person_id>")
+@login_required
+@roles_required('Admin')
 def personkort(person_id):
     person=db.session.query(Employee).filter(Employee.id==person_id).first()
     picture=db.session.query(EmployeePicture).filter_by(employee_id=person_id, picture_size='large').first()
     return render_template('personkort.html',person=person, picture=picture)
 
 @app.route("/kontakt")
+@login_required
 def kontakt():
     return render_template('kontakt.html')
 
-@app.route("/logga_ut")
-def logga_ut():
-    return render_template('logout.html')
+@app.route("/logout_2")
+def logout():
+    logout_user()
+    return render_template ('logout_2.html')
 
 if __name__ == '__main__':
     with app.app_context():
