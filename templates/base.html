@@ -12,13 +12,13 @@
 <body>
     
     <nav class="topnav">
-        <a href="{{url_for('home')}}">Hem</a>
-        <a href="{{url_for('staff')}}">Anställda</a>
+        <a class="nav-a" href="{{url_for('home')}}">Hem</a>
+        <a class="nav-a" href="{{url_for('staff')}}">Anställda</a>
         {% if current_user.has_role('Admin')%}
-        <a href="{{url_for('search_person')}}">Personkort</a>
+        <a class="nav-a" href="{{url_for('search_person')}}">Personkort</a>
         {% endif %}
-        <a href="{{url_for('contact')}}">Kontakt</a>
-        <a href="{{url_for('logout')}}">Logga ut</a>
+        <a class="nav-a" href="{{url_for('contact')}}">Kontakt</a>
+        <a class="nav-a" href="{{url_for('logout')}}">Logga ut</a>
     </nav>
     {% block content%}
     {% endblock%}
