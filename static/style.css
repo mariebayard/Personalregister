@@ -249,10 +249,15 @@ ul li span {
 .password-div{
     padding-right: 1.5rem;
 }
-.login-btn{
+
+.login-div form div #submit{
     background-color: var(--accent-color);
-    color: var(--text-color);
-    margin-left: 1.8rem;
+    width: 6rem;
+    color: var(--background-color);
+    margin-top: 1.2rem;
+}
+.login-div form div #submit:hover{
+    background-color: var(--accent-color2);
 }
 
 /* -------------------Kontakt styling--------------*/
