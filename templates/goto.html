@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}personkort{% endblock %}
+
+{% block content %}
+    <article class="goto-article">
+        <h1>Personkort</h1>
+        <div class="person-form-div">
+            <form action="" method="POST">
+                <label for="search">Sök efter person på ID:</label>
+                <input type="number" id="search" name="person_id" placeholder="Skriv in ID..">
+                <button class="btn" type="submit">Sök</button>
+            </form>
+        </div>
+        {% if message %}
+            <p class="message-p">{{message}}{{person_id}}</p>
+        {% endif %}
+    </article>
+{% endblock %}

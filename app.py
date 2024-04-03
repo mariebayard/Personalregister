@@ -79,19 +79,20 @@ def anstallda():
                            has_next=pa_obj.has_next,
                            has_prev=pa_obj.has_prev)
 
-@app.route("/personkort/search", methods=['POST'])
+@app.route("/personkort/search", methods=["GET",'POST'])
 @login_required
 def search_person():
-   query=request.form.get('query', type=int)
-   person= db.session.query(Employee).filter_by(id=query).first()
-   if person:
-       picture=db.session.query(EmployeePicture).filter_by(employee_id=person.id, picture_size='large').first()
-       return render_template('personkort.html', person=person, picture=picture)
-   else:
-       message='Det finns ingen anställd med ID: '
-       return render_template('personkort.html', message=message, query=query)
+    if request.method=='POST':
+        person_id=request.form.get('person_id', type=int)
+        person=db.session.query(Employee).filter_by(id=person_id).first()
+        if person:
+            return redirect(url_for('personkort', person_id=person_id))
+        else:
+            message='Det finns ingen anställd med ID: '
+            return render_template('goto.html', message=message, person_id=person_id)
+    return render_template('goto.html')
 
-@app.route("/personkort/<person_id>")
+@app.route("/personkort/<int:person_id>")
 @login_required
 @roles_required('Admin')
 def personkort(person_id):
@@ -114,4 +115,4 @@ if __name__ == '__main__':
         upgrade()
         seed_data(db)
 
-    app.run(debug=True)
+    app.run(debug=True, port=8080)

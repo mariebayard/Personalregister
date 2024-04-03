@@ -184,11 +184,15 @@ ul li {
 ul li span {
     font-weight: 600;
 }
+/* -------------------Goto styling--------------*/
+.goto-article{
+    height: 80vh;
+}
 .person-form-div {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
+    padding-top: 3rem;
 }
 .person-form-div label {
     font-size: 1rem;
@@ -203,7 +207,9 @@ ul li span {
 .person-p {
     margin-top: 3rem;
 }
-
+.message-p{
+    margin-top: 3rem;
+}
 /* -------------------Logout styling--------------*/
 .logout-div {
     display: flex;

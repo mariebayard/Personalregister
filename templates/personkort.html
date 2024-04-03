@@ -3,34 +3,23 @@
 {% block title %}personkort{% endblock %}
 
 {% block content %}
-<article class="person-article">
-    <h1>Personkort</h1>
-    
-    <div class="person-form-div">
-        <form action="{{ url_for('search_person')}}" method="POST">
-            <label for="search">Sök efter person på ID:</label>
-            <input type="number" id="search" name="query" placeholder="Skriv in ID..">
-            <button class="btn" type="submit">Sök</button>
-        </form>
-    </div>
-    {% if person %}
-    <p class="person-p">Här är mer information om anställd med ID {{person.id}}</p>
-    <div class="person-div">
-        <img class="person-img" src="{{ picture.picture }}" alt="Bild av anställd">
-        <ul>
-            <li><span> ID: </span> {{ person.id }}</li>
-            <li><span> Namn: </span>{{ person.name }}</li>
-            <li><span>Ålder: </span>{{ person.age }}</li>
-            <li><span>Telefon: </span>{{ person.phone }}</li>
-            <li><span>Land: </span>{{ person.country }}</li>
-            <li><span>Email: </span>{{ person.email }}</li>
-            <li><span>Adress: </span>{{ person.street_name}}, {{ person.street_number }}, 
-                {{ person.postcode}}, {{ person.city}}, {{ person.state}},
-                 {{ person.country}} </li>
-        </ul>
-    </div>
-    {% elif not person %}
-    <p class="person-p">{{message}} {{query}}</p>
-    {% endif %}
-</article>
+    <article class="person-article">
+        <h1>Personkort</h1>
+        
+        <p class="person-p">Här är mer information om anställd med ID {{person.id}}</p>
+        <div class="person-div">
+            <img class="person-img" src="{{ picture.picture }}" alt="Bild av anställd">
+            <ul>
+                <li><span> ID: </span> {{ person.id }}</li>
+                <li><span> Namn: </span>{{ person.name }}</li>
+                <li><span>Ålder: </span>{{ person.age }}</li>
+                <li><span>Telefon: </span>{{ person.phone }}</li>
+                <li><span>Land: </span>{{ person.country }}</li>
+                <li><span>Email: </span>{{ person.email }}</li>
+                <li><span>Adress: </span>{{ person.street_name}}, {{ person.street_number }}, 
+                    {{ person.postcode}}, {{ person.city}}, {{ person.state}},
+                    {{ person.country}} </li>
+            </ul>
+        </div>
+    </article>
 {% endblock%}
