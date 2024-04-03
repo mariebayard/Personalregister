@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('LOCAL_DATABASE_URI')
 app.config["SECRET_KEY"]=os.getenv('SECRET_KEY')
 app.config["SECURITY_PASSWORD_SALT"]=os.getenv('SECURITY_PASSWORD_SALT')
-app.config["SECURITY_POST_LOGIN_VIEW"]='/hem'
+app.config["SECURITY_POST_LOGIN_VIEW"]='/home'
 app.config['SECURITY_LOGIN_USER_TEMPLATE']='login.html'
 app.config["SECURITY_POST_LOGOUT_VIEW"]='/logout_2'
 
@@ -29,14 +29,14 @@ def firstpage ():
 def login():
     return render_template('login.html')
 
-@app.route("/hem")
+@app.route("/home")
 @login_required
-def hem():
-    return render_template('hem.html')
+def home():
+    return render_template('home.html')
 
-@app.route("/anstallda")
+@app.route("/staff")
 @login_required
-def anstallda():
+def staff():
     q=request.args.get('q','')
     sort_column=request.args.get('sort_column','id')
     sort_order=request.args.get('sort_order','asc')
@@ -68,7 +68,7 @@ def anstallda():
     employees=employees.order_by(sort_by)
 
     pa_obj=employees.paginate(page=page, per_page=30, error_out=True)
-    return render_template('anstallda.html', 
+    return render_template('staff.html', 
                            employees=pa_obj.items,
                            q=q,
                            sort_order=sort_order,
@@ -79,31 +79,31 @@ def anstallda():
                            has_next=pa_obj.has_next,
                            has_prev=pa_obj.has_prev)
 
-@app.route("/personkort/search", methods=["GET",'POST'])
+@app.route("/employee_card/search", methods=["GET",'POST'])
 @login_required
 def search_person():
     if request.method=='POST':
         person_id=request.form.get('person_id', type=int)
         person=db.session.query(Employee).filter_by(id=person_id).first()
         if person:
-            return redirect(url_for('personkort', person_id=person_id))
+            return redirect(url_for('employee_card', person_id=person_id))
         else:
             message='Det finns ingen anställd med ID: '
             return render_template('goto.html', message=message, person_id=person_id)
     return render_template('goto.html')
 
-@app.route("/personkort/<int:person_id>")
+@app.route("/employee_card/<int:person_id>")
 @login_required
 @roles_required('Admin')
-def personkort(person_id):
+def employee_card(person_id):
     person=db.session.query(Employee).filter(Employee.id==person_id).first()
     picture=db.session.query(EmployeePicture).filter_by(employee_id=person_id, picture_size='large').first()
-    return render_template('personkort.html',person=person, picture=picture)
+    return render_template('employee_card.html',person=person, picture=picture)
 
-@app.route("/kontakt")
+@app.route("/contact")
 @login_required
-def kontakt():
-    return render_template('kontakt.html')
+def contact():
+    return render_template('contact.html')
 
 @app.route("/logout_2")
 def logout():

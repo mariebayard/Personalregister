@@ -17,42 +17,42 @@
             <thead>
                 <tr>
                     <th>ID 
-                        <a href="{{url_for('anstallda', sort_order='asc', sort_column='id', q=q, page=page)}}">
+                        <a href="{{url_for('staff', sort_order='asc', sort_column='id', q=q, page=page)}}">
                             <i class="bx bxs-up-arrow"></i>
                         </a>
-                        <a href="{{url_for('anstallda', sort_order='desc', sort_column='id',q=q, page=page)}}">
+                        <a href="{{url_for('staff', sort_order='desc', sort_column='id',q=q, page=page)}}">
                             <i class="bx bxs-down-arrow"></i>
                         </a>
                     </th>
                     <th>Namn
-                        <a href="{{url_for('anstallda', sort_order='asc', sort_column='name', q=q, page=page)}}">
+                        <a href="{{url_for('staff', sort_order='asc', sort_column='name', q=q, page=page)}}">
                             <i class="bx bxs-up-arrow"></i>
                         </a>
-                        <a href="{{url_for('anstallda', sort_order='desc', sort_column='name',q=q, page=page)}}">
+                        <a href="{{url_for('staff', sort_order='desc', sort_column='name',q=q, page=page)}}">
                             <i class="bx bxs-down-arrow"></i>
                         </a>
                     </th>
                     <th>Ålder
-                        <a href="{{url_for('anstallda', sort_order='asc', sort_column='age', q=q, page=page)}}">
+                        <a href="{{url_for('staff', sort_order='asc', sort_column='age', q=q, page=page)}}">
                             <i class="bx bxs-up-arrow"></i>
                         </a>
-                        <a href="{{url_for('anstallda', sort_order='desc', sort_column='age',q=q, page=page)}}">
+                        <a href="{{url_for('staff', sort_order='desc', sort_column='age',q=q, page=page)}}">
                             <i class="bx bxs-down-arrow"></i>
                         </a>
                     </th>
                     <th>Telefon
-                        <a href="{{url_for('anstallda', sort_order='asc', sort_column='phone', q=q, page=page)}}">
+                        <a href="{{url_for('staff', sort_order='asc', sort_column='phone', q=q, page=page)}}">
                             <i class="bx bxs-up-arrow"></i>
                         </a>
-                        <a href="{{url_for('anstallda', sort_order='desc', sort_column='phone',q=q, page=page)}}">
+                        <a href="{{url_for('staff', sort_order='desc', sort_column='phone',q=q, page=page)}}">
                             <i class="bx bxs-down-arrow"></i>
                         </a>
                     </th>
                     <th>Land
-                        <a href="{{url_for('anstallda', sort_order='asc', sort_column='country', q=q, page=page)}}">
+                        <a href="{{url_for('staff', sort_order='asc', sort_column='country', q=q, page=page)}}">
                             <i class="bx bxs-up-arrow"></i>
                         </a>
-                        <a href="{{url_for('anstallda', sort_order='desc', sort_column='country',q=q, page=page)}}">
+                        <a href="{{url_for('staff', sort_order='desc', sort_column='country',q=q, page=page)}}">
                             <i class="bx bxs-down-arrow"></i>
                         </a>
                     </th>
@@ -69,7 +69,7 @@
                     <td>{{ employee.country }}</td>
                     <td>
                         {% if current_user.has_role('Admin') %}
-                        <a href="{{ url_for('personkort', person_id=employee.id) }}">
+                        <a href="{{ url_for('employee_card', person_id=employee.id) }}">
                             <img src="{{ picture.picture }}" alt="Bild anställd"></a>
                         {% else %}
                         <img src="{{ picture.picture }}" alt="Bild anställd"></a>
@@ -85,7 +85,7 @@
                 {% if nr_pages !=1 %}
                     {% if has_prev %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('anstallda', sort_column=sort_column, sort_order=sort_order, q=q, page=page-1)}}">
+                        <a class="page-link" href="{{ url_for('staff', sort_column=sort_column, sort_order=sort_order, q=q, page=page-1)}}">
                             <i class="bx bx-chevrons-left"></i>
                         </a>
                     </li>
@@ -99,7 +99,7 @@
                         {% if page %}
                             {% if page != pagination.page %}
                             <li class="page-item">
-                                <a class="page-link" href="{{ url_for('anstallda', sort_column=sort_column, sort_order=sort_order, q=q, page=page)}}">{{ page }}</a>
+                                <a class="page-link" href="{{ url_for('staff', sort_column=sort_column, sort_order=sort_order, q=q, page=page)}}">{{ page }}</a>
                             </li>
                             {% else %}
                             <li class="page-item active">
@@ -110,7 +110,7 @@
                     {% endfor %}
                     {% if has_next %}
                         <li class="page-item">
-                            <a class="page-link" href="{{ url_for('anstallda', sort_column=sort_column, sort_order=sort_order, q=q, page=page+1)}}">
+                            <a class="page-link" href="{{ url_for('staff', sort_column=sort_column, sort_order=sort_order, q=q, page=page+1)}}">
                                 <i class="bx bx-chevrons-right"></i>
                             </a>
                         </li>
