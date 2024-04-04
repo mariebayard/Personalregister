@@ -9,12 +9,13 @@ Skapa en .env-fil med variablerna; LOCAL_DATABASE_URI, SECRET_KEY och SECURITY_P
 När applikationen körs seedas data för 500 anställda samt 3 användare.
 
 ## Inloggningsuppgifter;  
-Användare 1, roll Admin;  
-Email; admin@test.com, Lösenord; adminpassword  
+Användare 1, roller Admin och User;  
+Email; admin_user@test.com, Lösenord; adminuserpassword   
 Användare 2, roll User;  
 Email; user@test.com, Lösenord; userpassword  
-Användare 3, roller Admin och User;  
-Email; admin_user@test.com, Lösenord; adminuserpassword  
+Användare 3, roll Admin;  
+Email; admin@test.com, Lösenord; adminpassword  
+
 
 Loggar du in med rollen admin har du åtkomst till samtliga sidor; Hem, Anställda, Personkort, Kontakt och Logga ut. Från sidan anställda kan du klicka på bilderna som är länk för att komma vidare till personkort för respektive person och där få mer info om personen. Klickar du på personkort kommer du till routen employee_card/search och kan söka efter en person på ID.
 
