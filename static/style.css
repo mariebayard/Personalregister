@@ -105,6 +105,7 @@ footer p{
 .employee-article {
     text-align: center;
     height: fit-content;
+    min-height: 80vh;
 }
 .employee-div{
     display: flex;
